@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Primary tumor (T)</h2>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <label>Oral Cavity</label>
+      </div>
+      <div class="panel-body">
+        <div ng-app="app">
+          <div ng-controller="TStagingController">
+            <table>
+              <tr>
+                <td>Tumor Size</td>
+                <td>
+                  <input type="text" ng-model="tumor.t" ng-change="onChangeTSize(tumor)" placeholder="Enter tumer size" ng-disabled="showOtherOption" />cm
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>.</td>
+              </tr>
+              <tr>
+                <td>Depth Of Invasion</td>
+                <td>
+                  <input type="text" ng-model="doi.d" ng-change="onChangeDOI(doi)" placeholder="Enter depth of invasion" ng-disabled="showOtherOption" />mm
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>.</td>
+              </tr>
+              <tr>
+                <td>Other</td>
+                <td>
+                  <input type="checkbox" name="other" ng-model="other" value="1" ng-change="onChangeOther(other)">
+                  <span ng-show="showOtherOption">{{tNotFound}}</span>
+                  <br>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>.</td>
+              </tr>
+              <tr ng-show="showOtherOption">
+                <td>Please Select</td>
+                <td>
+                  <input type="radio" name="t" id="tx" ng-model="radio.r" value='TX'>TX (Primary tumor cannot be assessed)
+                  <br>
+                  <input type="radio" name="t" id="tis" ng-model="radio.r" value='Tis'>Tis (Carcinoma in situ)
+                  <br>
+                  <input type="radio" name="t" id="t4" ng-model="radio.r" value='T4'>T4 (Moderately advanced)
+                  <br>
+                  <input type="radio" name="t" id="t4a" ng-model="radio.r" value='T4a'>T4a (Moderately advanced local disease)
+                  <br>
+                  <input type="radio" name="t" id="t4b" ng-model="radio.r" value='T4b'>T4b (Very advanced local disease)
+                  <br>
+                </td>
+              </tr>
+            </table>
+
+            <form ng-show="primaryTumor.pt && !showOtherOption">
+              <hr>
+              <label>Primary tumor (T) : </label>
+              <button type="button" ng-click="alertBtnClick()">{{primaryTumor.pt}}</button>
+            </form>
+            <form ng-show="radio.r && showOtherOption">
+              <hr>
+              <label ng-show="radio.r">Primary tumor (T) : </label>
+              <button type="button" ng-click="alertBtnClick()">{{radio.r}}</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div><a href="https://emedicine.medscape.com/article/2048034-overview" target="_blank">Check refrence here</a></div>
+</body>
+</html>
