@@ -30,7 +30,7 @@ angular.module("app", []).controller("TStagingController", function ($scope) {
       $scope.doi = {d: ''};
       $scope.primaryTumor = {pt: ''};
       $scope.radio = {r: ''};
-       $scope.tNotFound = '';
+      $scope.tNotFound = '';
     }
     else
       $scope.showOtherOption = false;
@@ -49,7 +49,7 @@ angular.module("app", []).controller("TStagingController", function ($scope) {
       $scope.primaryTumor.pt = 'T1, T2, T3 not found: Please Select Other';
       $scope.tNotFound = 'T1, T2, T3 not found: Please select following option';
       $scope.showOtherOption = true;
-      
+
     }
   };
 
