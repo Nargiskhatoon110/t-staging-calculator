@@ -8,87 +8,266 @@
 </head>
 
 <body>
-<div class="container">
-  <h2>Primary tumor (T)</h2>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <label>Oral Cavity</label>
-    </div>
-    <div class="panel-body">
-      <div ng-app="app">
-        <div ng-controller="TStagingController">
-          <table>
-            <tr>
-              <td>Tumor Size</td>
-              <td>
-                <input type="text" ng-model="tumor.t" ng-change="onChangeTSize(tumor)" placeholder="Enter tumer size"
-                       ng-disabled="showOtherOption"/>cm
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td>.</td>
-            </tr>
-            <tr>
-              <td>Depth Of Invasion</td>
-              <td>
-                <input type="text" ng-model="doi.d" ng-change="onChangeDOI(doi)" placeholder="Enter depth of invasion"
-                       ng-disabled="showOtherOption"/>mm
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td>.</td>
-            </tr>
-            <tr>
-              <td>Other</td>
-              <td>
-                <input type="checkbox" name="other" ng-model="other" value="1" ng-change="onChangeOther(other)">
-                <span ng-show="showOtherOption">{{tNotFound}}</span>
-                <br>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td>.</td>
-            </tr>
-            <tr ng-show="showOtherOption">
-              <td>Please Select</td>
-              <td>
-                <input type="radio" name="t" id="tx" ng-model="radio.r" value='TX'>TX (Primary tumor cannot be assessed)
-                <br>
-                <input type="radio" name="t" id="tis" ng-model="radio.r" value='Tis'>Tis (Carcinoma in situ)
-                <br>
-                <input type="radio" name="t" id="t4" ng-model="radio.r" value='T4'>T4 (Moderately advanced)
-                <br>
-                <input type="radio" name="t" id="t4a" ng-model="radio.r" value='T4a'>T4a (Moderately advanced local
-                disease)
-                <br>
-                <input type="radio" name="t" id="t4b" ng-model="radio.r" value='T4b'>T4b (Very advanced local disease)
-                <br>
-              </td>
-            </tr>
-          </table>
+<div class="container" ng-app="app" ng-controller="TStagingController">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Primary tumor (T)</h2>
+      <!--<div class="panel panel-default">-->
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <label>Oral Cavity</label>
+        </div>
+        <div class="panel-body">
+          <div>
+            <div>
+              <table>
+                <tr>
+                  <td>Tumor Size</td>
+                  <td>
+                    <input type="text" ng-model="tumor.t" ng-change="onChangeTSize(tumor)"
+                           placeholder="Enter tumer size"
+                           ng-disabled="showOtherOption"/>cm
+                  </td>
+                </tr>
+                <tr>
+                  <td>Depth Of Invasion</td>
+                  <td>
+                    <input type="text" ng-model="doi.d" ng-change="onChangeDOI(doi)"
+                           placeholder="Enter depth of invasion"
+                           ng-disabled="showOtherOption"/>mm
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>.</td>
+                </tr>
+                <tr>
+                  <td>Other</td>
+                  <td>
+                    <input type="checkbox" name="other" ng-model="other" value="1" ng-change="onChangeOther(other)">
+                    <span ng-show="showOtherOption">{{tNotFound}}</span>
+                    <br>
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>.</td>
+                </tr>
+                <tr ng-show="showOtherOption">
+                  <td>Please Select</td>
+                  <td>
+                    <input type="radio" name="t" id="tx" ng-model="radio.r" value='TX' ng-change="onChangeRadio()">TX
+                    (Primary tumor cannot be
+                    assessed)
+                    <br>
+                    <input type="radio" name="t" id="tis" ng-model="radio.r" value='Tis' ng-change="onChangeRadio()">Tis
+                    (Carcinoma in situ)
+                    <br>
+                    <input type="radio" name="t" id="t4" ng-model="radio.r" value='T4' ng-change="onChangeRadio()">T4
+                    (Moderately advanced)
+                    <br>
+                    <input type="radio" name="t" id="t4a" ng-model="radio.r" value='T4a' ng-change="onChangeRadio()">T4a
+                    (Moderately advanced local
+                    disease)
+                    <br>
+                    <input type="radio" name="t" id="t4b" ng-model="radio.r" value='T4b' ng-change="onChangeRadio()">T4b
+                    (Very advanced local
+                    disease)
+                    <br>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--</div>-->
+      <!--<div class="col-md-6">-->
+      <h2>Regional lymph nodes (N)</h2>
+      <!--<div class="panel panel-default">-->
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <label>Clinical N (cN)</label>
+        </div>
+        <div class="panel-body">
+          <div>
+            <div>
+              <table>
+                <tr>
+                  <td>Lymph Node</td>
+                  <td>
+                    <select ng-change="onChangeMetastasisOption(selcMetastasisOption)" ng-model="selcMetastasisOption.s"
+                            ng-disabled="showOtherNodeOption">
+                      <option value="single">Single Ipsilateral</option>
+                      <option value="multiple">Multiple Ipsilateral</option>
+                      <option value="bilateral">Single Bilateral</option>
+                      <option value="bilateralM">Multiple Bilateral</option>
+                      <option value="contralateral">Single Contralateral</option>
+                      <option value="contralateralM">Multiple Contralateral</option>
+                    </select>
+                    <input type="text" ng-model="nodes.n" ng-change="onChangeLymphNode(nodes)"
+                           placeholder="Enter lymph node"
+                           ng-disabled="showOtherNodeOption"/>cm
+                  </td>
+                </tr>
+                <tr>
+                  <td> ENE:</td>
+                  <td><input type="checkbox" name="ene" ng-model="ene" value="1" ng-change="onChangeENE(ene)"
+                             ng-disabled="showOtherNodeOption">
+                    {{eneLabel.e}}
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>.</td>
+                </tr>
+                <tr>
+                  <td>Other</td>
+                  <td>
+                    <input type="checkbox" name="otherNode" ng-model="otherNode" value="1"
+                           ng-change="onChangeOtherNode(otherNode)">
+                    <span ng-show="showOtherNodeOption">{{nNotFound}}</span>
+                    <br>
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>.</td>
+                </tr>
+                <tr ng-show="showOtherNodeOption">
+                  <td>Please Select</td>
+                  <td>
+                    <input type="radio" name="n" id="nx" ng-model="radioNode.r" value='NX' ng-change="onChangeRadio()">NX
+                    (Regional nodes cannot be
+                    assessed)
+                    <br>
+                    <input type="radio" name="n" id="n0" ng-model="radioNode.r" value='N0' ng-change="onChangeRadio()">N0
+                    (No regional lymph node
+                    metastasis)
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-------------------------------------------------------------------------->
+      <h2>Distant metastasis (M)</h2>
+      <!--<div class="panel panel-default">-->
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <label>Metastasis</label>
+        </div>
+        <div class="panel-body">
+          <div>
+            <div>
+              <table>
 
-          <form ng-show="primaryTumor.pt && !showOtherOption">
-            <hr>
-            <label>Primary tumor (T) : </label>
-            <button type="button" ng-click="alertBtnClick()">{{primaryTumor.pt}}</button>
-          </form>
-          <form ng-show="radio.r && showOtherOption">
-            <hr>
-            <label ng-show="radio.r">Primary tumor (T) : </label>
-            <button type="button" ng-click="alertBtnClick()">{{radio.r}}</button>
-          </form>
+                <tr>
+                  <td>Please Select</td>
+                  <td>
+                    <input type="radio" name="m" id="m0" ng-model="radioMetastasis.r" value='M0'
+                           ng-change="onChangeMetastasis()">M0 (No distant
+                    metastasis)
+                    <br>
+                    <input type="radio" name="m" id="m1" ng-model="radioMetastasis.r" value='M1'
+                           ng-change="onChangeMetastasis()">M1 (Distant metastasis)
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div>
-      <a href="https://emedicine.medscape.com/article/2048034-overview" target="_blank">Check reference 1 here</a><br>
-      <a href="https://www.cancer.net/cancer-types/oral-and-oropharyngeal-cancer/stages-and-grades" target="_blank">Check
-        reference 2 here</a><br>
+    <!-------------------------------------------------------------------------->
+    <div class="col-md-6">
+      <h2>TNM Staging</h2>
+      <!--<div class="panel panel-default">-->
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <label>TNM Staging Result</label>
+        </div>
+        <div class="panel-body">
+          <div
+              ng-show="!primaryTumor.pt && !regionalLymphNodes.ln && !showOtherOption && !showOtherNodeOption && !radioMetastasis.r">
+            <label>TNM staging result will display here...</label>
+            <!--<hr> && regionalLymphNodes.ln && radioMetastasis.r-->
+          </div>
+          <div>
+            <form ng-show="primaryTumor.pt && !showOtherOption">
+
+              <label>Primary tumor (T) : </label>
+              <button type="button" ng-click="alertBtnClick()">{{primaryTumor.pt}}</button>
+            </form>
+            <form ng-show="radio.r && showOtherOption">
+              <!--<hr>-->
+              <label ng-show="radio.r">Primary tumor (T) : </label>
+              <button type="button" ng-click="alertBtnClick()">{{radio.r}}</button>
+            </form>
+
+            <!---------regionalLymphNodes result--->
+            <form ng-show="regionalLymphNodes.ln && !showOtherNodeOption">
+              <hr>
+              <label>Regional lymph nodes (N) : </label>
+              <button type="button" ng-click="alertBtnClick()">{{regionalLymphNodes.ln}}</button>
+            </form>
+
+            <form ng-show="radioNode.r && showOtherNodeOption">
+              <hr>
+              <label ng-show="radioNode.r">Regional lymph nodes (N) : </label>
+              <button type="button" ng-click="alertBtnClick()">{{radioNode.r}}</button>
+            </form>
+
+            <!----------Metastasis result form-->
+            <form ng-show="radioMetastasis.r">
+              <hr>
+              <label>Distant metastasis (M) : </label>
+              <button type="button" ng-click="alertBtnClick()">{{radioMetastasis.r}}</button>
+            </form>
+
+            <!----------Cancer result form-->
+            <!--   <form
+                   ng-show="(primaryTumor.pt && regionalLymphNodes.ln && radioMetastasis.r)
+                   || radioMetastasis.r == 'M1' || (regionalLymphNodes.ln == 'N3b' && radioMetastasis.r) || (radioNode.r && radio.r && radioMetastasis.r)">
+                 <hr>
+                 <label>Cancer Stage : </label>
+                 <button type="button" ng-click="findCancerStage()">Click here</button>
+                 <button type="button" ng-click="reset()">Reset</button>
+               </form>-->
+
+            <div>
+              <hr>
+              <a href="https://emedicine.medscape.com/article/2048034-overview" target="_blank">Check reference 1
+                here</a><br>
+              <a href="https://www.cancer.net/cancer-types/oral-and-oropharyngeal-cancer/stages-and-grades"
+                 target="_blank">Check
+                reference 2 here</a><br>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!--<h2>TNM Staging</h2>-->
+      <!--<div class="panel panel-default">-->
+      <div class="panel panel-danger"
+           ng-show="showCancerStagePanel">
+        <div class="panel-heading">
+          <label>Cancer Stage</label>
+        </div>
+        <div class="panel-body">
+          <div>
+            <label>Cancer Stage is : {{cancerStage.c}}</label>
+            <button type="button" ng-click="reset()">Reset</button>
+            <!--<hr>-->
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
+</div>
 </div>
 </body>
 </html>
