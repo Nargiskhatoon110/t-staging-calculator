@@ -93,28 +93,27 @@
           <div>
             <div>
               <table>
-                <h>html</h>
                 <tr>
                   <td>Lymph Node&nbsp&nbsp&nbsp</td>
                   <td>
                     <!--<div>-->
                     <input type="radio" name="metastasisR" id="single" ng-model="selcMetastasisOption.s"
-                           value="single"
+                           value="single" ng-disabled="showOtherNodeOption"
                            ng-change="onChangeMetastasisOption(selcMetastasisOption)">S,
                     <input type="radio" name="metastasisR" id="multiple" ng-model="selcMetastasisOption.s"
-                           value="multiple"
+                           value="multiple" ng-disabled="showOtherNodeOption"
                            ng-change="onChangeMetastasisOption(selcMetastasisOption)">M,
                     <input type="radio" name="metastasisR" id="bilateral" ng-model="selcMetastasisOption.s"
-                           value="bilateral"
+                           value="bilateral" ng-disabled="showOtherNodeOption"
                            ng-change="onChangeMetastasisOption(selcMetastasisOption)">B,
                     <input type="radio" name="metastasisR" id="bilateralM" ng-model="selcMetastasisOption.s"
-                           value="bilateralM"
+                           value="bilateralM" ng-disabled="showOtherNodeOption"
                            ng-change="onChangeMetastasisOption(selcMetastasisOption)">BM,
                     <input type="radio" name="metastasisR" id="contralateral" ng-model="selcMetastasisOption.s"
-                           value="contralateral"
+                           value="contralateral" ng-disabled="showOtherNodeOption"
                            ng-change="onChangeMetastasisOption(selcMetastasisOption)">C,
                     <input type="radio" name="metastasisR" id="contralateralM" ng-model="selcMetastasisOption.s"
-                           value="contralateralM"
+                           value="contralateralM" ng-disabled="showOtherNodeOption"
                            ng-change="onChangeMetastasisOption(selcMetastasisOption)">CM,
 
                     <!--   <select ng-change="onChangeMetastasisOption(selcMetastasisOption)" ng-model="selcMetastasisOption.s"
