@@ -94,20 +94,42 @@
             <div>
               <table>
                 <tr>
-                  <td>Lymph Node</td>
+                  <td>Lymph Node&nbsp&nbsp&nbsp</td>
                   <td>
-                    <select ng-change="onChangeMetastasisOption(selcMetastasisOption)" ng-model="selcMetastasisOption.s"
-                            ng-disabled="showOtherNodeOption">
-                      <option value="single">Single Ipsilateral</option>
-                      <option value="multiple">Multiple Ipsilateral</option>
-                      <option value="bilateral">Single Bilateral</option>
-                      <option value="bilateralM">Multiple Bilateral</option>
-                      <option value="contralateral">Single Contralateral</option>
-                      <option value="contralateralM">Multiple Contralateral</option>
-                    </select>
+                    <!--<div>-->
+                    <input type="radio" name="metastasisR" id="single" ng-model="selcMetastasisOption.s"
+                           value="single"
+                           ng-change="onChangeMetastasisOption(selcMetastasisOption)">S,
+                    <input type="radio" name="metastasisR" id="multiple" ng-model="selcMetastasisOption.s"
+                           value="multiple"
+                           ng-change="onChangeMetastasisOption(selcMetastasisOption)">M,
+                    <input type="radio" name="metastasisR" id="bilateral" ng-model="selcMetastasisOption.s"
+                           value="bilateral"
+                           ng-change="onChangeMetastasisOption(selcMetastasisOption)">B,
+                    <input type="radio" name="metastasisR" id="bilateralM" ng-model="selcMetastasisOption.s"
+                           value="bilateralM"
+                           ng-change="onChangeMetastasisOption(selcMetastasisOption)">BM,
+                    <input type="radio" name="metastasisR" id="contralateral" ng-model="selcMetastasisOption.s"
+                           value="contralateral"
+                           ng-change="onChangeMetastasisOption(selcMetastasisOption)">C,
+                    <input type="radio" name="metastasisR" id="contralateralM" ng-model="selcMetastasisOption.s"
+                           value="contralateralM"
+                           ng-change="onChangeMetastasisOption(selcMetastasisOption)">CM,
+
+                    <!--   <select ng-change="onChangeMetastasisOption(selcMetastasisOption)" ng-model="selcMetastasisOption.s"
+                                                ng-disabled="showOtherNodeOption">
+                                          <option value="single">Single Ipsilateral</option>
+                                          <option value="multiple">Multiple Ipsilateral</option>
+                                          <option value="bilateral">Single Bilateral</option>
+                                          <option value="bilateralM">Multiple Bilateral</option>
+                                          <option value="contralateral">Single Contralateral</option>
+                                          <option value="contralateralM">Multiple Contralateral</option>
+                                        </select>-->
+
                     <input type="text" ng-model="nodes.n" ng-change="onChangeLymphNode(nodes)"
                            placeholder="Enter lymph node"
                            ng-disabled="showOtherNodeOption"/>cm
+
                   </td>
                 </tr>
                 <tr>
